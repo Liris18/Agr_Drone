@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Verde - Monitoramento Sustentável</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Drone Verde: Monitoramento Sustentável</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre o Drone</a></li>
+                <li><a href="#problema">Problema Ambiental</a></li>
+                <li><a href="#funcionamento">Como Funciona</a></li>
+                <li><a href="#tecnologia">Tecnologia Usada</a></li>
+                <li><a href="#graficos">Gráficos</a></li>
+                <li><a href="#manual">Manual de Uso</a></li>
+                <li><a href="#agradecimentos">Agradecimentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h2>Início</h2>
+        <p>Bem-vindo ao nosso projeto! Aqui você vai conhecer como a robótica e a energia solar podem ajudar no monitoramento ambiental, promovendo uma agricultura mais consciente e sustentável.</p>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre o Drone</h2>
+        <p>Nosso drone foi desenvolvido para monitorar áreas agrícolas. Ele detecta agrotóxicos no ar e na água e mede a umidade do solo, auxiliando os agricultores na tomada de decisões mais seguras para o meio ambiente.</p>
+    </section>
+
+    <section id="problema">
+        <h2>Problema Ambiental</h2>
+        <p>O uso excessivo de agrotóxicos nas plantações é um grande desafio ambiental e de saúde pública. Essas substâncias podem contaminar o ar, a água e o solo, afetando a biodiversidade e a qualidade de vida das pessoas. Monitorar esses níveis é essencial para reduzir os impactos negativos.</p>
+    </section>
+
+    <section id="funcionamento">
+        <h2>Como Funciona</h2>
+        <p>O drone é equipado com sensores para detectar partículas de agrotóxicos e medir a umidade do solo. Utiliza energia solar, tornando sua operação sustentável. Os dados são coletados em tempo real e armazenados para análise posterior.</p>
+    </section>
+
+    <section id="tecnologia">
+        <h2>Tecnologia Usada</h2>
+        <ul>
+            <li>Placas solares</li>
+            <li>Sensores químicos</li>
+            <li>Sensor de umidade</li>
+            <li>Microcontrolador (Arduino)</li>
+            <li>GPS</li>
+            <li>Software de análise</li>
+        </ul>
+    </section>
+
+     <section id="graficos">
+        <h2>Gráficos de Monitoramento</h2>
+        <p>Abaixo estão os dados coletados pelo nosso drone:</p>
+
+        <canvas id="graficoAgrotoxicos" width="400" height="200"></canvas>
+        <canvas id="graficoPhAgua" width="400" height="200"></canvas>
+        <canvas id="graficoUmidadeSolo" width="400" height="200"></canvas>
+        <canvas id="graficoUmidadeAr" width="400" height="200"></canvas>
+        <canvas id="graficoTemperatura" width="400" height="200"></canvas>
+        <canvas id="graficoPhFaixas" width="400" height="200"></canvas>
+    </section>
+
+    <section id="manual">
+        <h2>Manual de Uso</h2>
+        <ol>
+            <li>Ligue o drone e verifique a carga das placas solares.</li>
+            <li>Programe a rota de voo ou controle manualmente.</li>
+            <li>Ative os sensores antes do voo.</li>
+            <li>Realize o voo de monitoramento.</li>
+            <li>Baixe os dados para o computador.</li>
+            <li>Analise os resultados nos gráficos.</li>
+        </ol>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Projeto Drone Verde - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+       
+        // Gráfico de Barras - pH da Água
+        const ctxPh = document.getElementById('graficoPhAgua').getContext('2d');
+        new Chart(ctxPh, {
+            type: 'bar',
+            data: {
+                labels: ['Ponto 1', 'Ponto 2', 'Ponto 3', 'Ponto 4', 'Ponto 5'],
+                datasets: [{
+                    label: 'pH da Água',
+                    data: [6.5, 7.0, 6.8, 7.2, 6.9],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true, suggestedMax: 10 } } }
+        });
+
+       
+        // Gráfico de Barras - Umidade do Solo por Faixa (%)
+        const ctxSolo = document.getElementById('graficoUmidadeSolo').getContext('2d');
+        new Chart(ctxSolo, {
+            type: 'bar',
+            data: {
+                labels: ['0-20% (Muito seco)', '20-40% (Seco)', '40-60% (Ideal)', '60-80% (Úmido)'],
+                datasets: [{
+                    label: 'Umidade do Solo (%)',
+                    data: [15, 30, 50, 70],
+                    backgroundColor: [
+                        'rgba(255, 174, 99, 0.23)',
+                        'rgba(255, 174, 99, 0.23)',
+                       'rgba(255, 174, 99, 0.23)',
+                        'rgba(255, 174, 99, 0.23)'
+                    ],
+                    borderColor: [
+                      'rgba(255, 174, 99, 0.23)',
+                      'rgba(255, 174, 99, 0.23)',
+                      'rgba(255, 174, 99, 0.23)',
+                      'rgba(255, 174, 99, 0.23)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true, max: 100 } } }
+        });
+
+       
+        // Gráfico de Barras - Umidade do Ar por Faixa (%)
+        const ctxAr = document.getElementById('graficoUmidadeAr').getContext('2d');
+        new Chart(ctxAr, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '0-30% (Muito baixa)',
+                    '30-50% (Baixa)',
+                    '50-60% (Ideal)',
+                    '60-80% (Alta)',
+                    '80-100% (Muito alta)'
+                ],
+                datasets: [{
+                    label: 'Umidade do Ar (%)',
+                    data: [25, 40, 55, 70, 90],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(153, 102, 255, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: { responsive: true, scales: { y: { beginAtZero: true, max: 100 } } }
+        });
+
+       
+        // Gráfico de Barras - Temperatura Ambiente
+        const ctxTemp = document.getElementById('graficoTemperatura').getContext('2d');
+        new Chart(ctxTemp, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '0-10°C (Muito fria)',
+                    '10-18°C (Fria)',
+                    '18-27°C (Ideal)',
+                    '27-35°C (Quente)',
+                    '35-45°C (Muito quente)',
+                    '>45°C (Crítico)'
+                ],
+                datasets: [{
+                    label: 'Temperatura (°C)',
+                    data: [5, 14, 22, 30, 40, 50],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 60,
+                        title: {
+                            display: true,
+                            text: 'Temperatura (°C)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Intervalos de Temperatura Ambiente'
+                    }
+                }
+            }
+        });
+
+        
+        // Gráfico de Barras - pH da Água por Faixa de Qualidade
+        const ctxPhFaixas = document.getElementById('graficoPhFaixas').getContext('2d');
+        new Chart(ctxPhFaixas, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '0-4 (Muito ácido)',
+                    '4-6 (Ácido)',
+                    '6-7 (Levemente ácido / Neutro)',
+                    '7-8 (Ideal)',
+                    '8-9 (Alcalino)',
+                    '9-14 (Muito alcalino)'
+                ],
+                datasets: [{
+                    label: 'pH da Água',
+                    data: [2, 5, 6.5, 7.5, 8.5, 11],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(201, 203, 207, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 14,
+                        title: {
+                            display: true,
+                            text: 'pH'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Faixas de pH da Água e Qualidade'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
